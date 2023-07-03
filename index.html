@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TextSLAM Project</title>
+    <link type="text/css" rel="stylesheet" href="styles.css"/>
+    <link rel="icon" href="./pic/logo_white.png" type ="image/icon">
+</head>
+
+<body>
+    <!-- Title -->
+    <h1 style="text-align: center;">TextSLAM: Visual SLAM with Semantic Planar Text Features</h1>
+
+    <div align=center>
+        <b>Authors:</b> &emsp;
+        <a href=https://leeby68.github.io/>Boying Li</a> &emsp;
+        <a href=https://drone.sjtu.edu.cn/dpzou/>Danping Zou</a> &emsp;
+        Yuan Huang &emsp; Xinghan Niu &emsp;
+        <a href=https://www.researchgate.net/profile/Ling-Pei>Ling Pei</a>  &emsp;
+        <a href=https://www.researchgate.net/profile/Wenxian-Yu>Wenxian Yu</a>
+    </div>
+
+    <p></p>
+    <p></p>
+
+    <div align=center >
+        <a href=https://github.com/SJTU-ViSYS/TextSLAM>CODE</a> &emsp;
+        <a href=https://github.com/SJTU-ViSYS/TextSLAM>DATASET</a> &emsp;
+        <a href=https://github.com/SJTU-ViSYS/TextSLAM>EVALUATION</a> 
+    </div>
+
+    <h2>Related Papers:</h2>
+    <div>
+        <ul></ul>
+            <li><a href=https://arxiv.org/abs/1912.05002>TextSLAM: Visual SLAM with Planar Text Features</a></li>
+            <p.small style="color:gray"> &emsp; Boying Li, Danping Zou, Daniele Sartori, Ling Pei, Wenxian Yu <br>
+             &emsp; IEEE International Conference on Robotics and Automation (ICRA). 2020 </p>
+            
+            <li><a href=https://arxiv.org/abs/2305.10029>TextSLAM: Visual SLAM with Semantic Planar Text Features</a></li>
+            <p.small style="color:gray"> &emsp; Boying Li, Danping Zou, Yuan Huang, Xinghan Niu, Ling Pei, Wenxian Yu <br>
+            &emsp; Arxiv. 2023 </p> 
+        </ul> 
+    </div>      
+
+    <!-- 1. motivation -->
+    <h2>Motivation</h2>
+
+    <p style="text-align: left;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
+    <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
+    </svg>
+    &ensp;TextSLAM is a novel visual Simultaneous Localization and Mapping system (SLAM) tightly coupled with semantic text objects.
+    </p>
+
+    <p style="text-align: left;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+  <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+        </svg>
+
+        &ensp; Humans can read texts and navigate complex environments using scene texts, such as road markings and room names. 
+        <b>Why not robots?</b>
+        
+    </p>
+
+    <p style="text-align: left;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
+    <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
+        </svg>
+        &ensp; TextSLAM explores scene texts as the basic feature both geometrically and semantically. It achieves superior performance even under challenging environments, such as image blurring, large viewpoint changes, and significant illumination variations (day and night).
+    </p>
+    
+
+    <div align=center>
+        <img src="./pic/Image_TextSLAM.png"  width ="800"/>
+        <p><em>Overview of TextSLAM</em></p>
+        <img src="./pic/Image_TextSLAM_dataset.png"  width ="800"/>
+        <p><em>Overview of TextSLAM dataset</em></p>
+    </div>
+
+    <!-- 2. Abstract -->
+    <h2>Abstract</h2>
+
+    <p style="text-align: left;">&emsp;&emsp; We propose a novel visual SLAM method that integrates text objects tightly by treating them as semantic features via fully exploring their geometric and semantic prior. The text object is modeled as a texture-rich planar patch whose semantic meaning is extracted and updated on the fly for better data association. With the full exploration of locally planar characteristics and semantic meaning of text objects, the SLAM system becomes more accurate and robust even under challenging conditions such as image blurring, large viewpoint changes,  and significant illumination variations (day and night). We tested our method in various scenes with the ground truth data. The results show that integrating texture features leads to a more superior SLAM system that can match images across day and night. The reconstructed semantic 3D text map could be useful for navigation and scene understanding in robotic and mixed reality applications.</p>
+    
+
+    <!-- 3. Results-->
+    <h2>Results</h2>
+
+    <center>
+        <video class="center" src="./pic/1_video_outdoor_day.mp4" controls width="800"> ⁪</video>
+    </center>
+
+    <center>
+        <video class="center" src="./pic/2_video_outdoor_night_compress1.mp4" controls width="800"> ⁪</video>
+    </center>
+
+    <center>
+        <video class="center" src="./pic/3_video_rapid.mp4" controls width="800"> ⁪</video>
+    </center> 
+
+    
+
+    <!-- 4. BibTeX-->
+    <h2>BibTeX</h2>
+    <blockquote style="text-align: left;">
+        <p>
+            @article{li2023textslam,<br>
+            title={TextSLAM: Visual SLAM with Semantic Planar Text Features},<br>
+            author={Li, Boying and Zou, Danping and Huang, Yuan and Niu, Xinghan and Pei, Ling and Yu, Wenxian},<br>
+            booktitle={arXiv preprint},<br>
+            year={2023}
+            }
+        </p>
+
+        <p>
+            @inproceedings{li2020textslam,<br>
+            title={TextSLAM: Visual SLAM with Planar Text Features},<br>
+            author={Li, Boying and Zou, Danping and Sartori, Daniele and Pei, Ling and Yu, Wenxian},<br>
+            booktitle={IEEE International Conference on Robotics and Automation (ICRA)},<br>
+            year={2020}
+            }
+        </p>
+
+    </blockquote>
+    
+</body>
+
+</html>

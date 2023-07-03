@@ -1,0 +1,28 @@
+body{
+    margin: 100px; 
+    /* margin: 100px 300px 100px 300px;*/   /* 上边 | 右边 | 下边 | 左边 */
+    /* text-align: center; */
+}
+
+ h1::before {
+            content: "";
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: url(./pic/logo.png);
+            background-size: cover;
+        }
+
+
+p.small {
+    line-height: 1.0
+ }
+
+ p {
+    line-height: 1.5
+ }
+
+ .video-box {
+    width: 50%;
+    position: relative;
+}
